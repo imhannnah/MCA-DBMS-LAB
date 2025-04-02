@@ -1,0 +1,66 @@
+-- 
+-- Roll No: 18
+-- Name: HANNA
+-- Program: MCA
+-- 
+
+
+--
+-- Table structure for table librarians
+--
+
+--
+-- create table librarians(librarianid int primary key Auto_increment,name varchar(50) not null,email varchar(100)unique not null,phone varchar(10) unique);
+--
+
+-- Table structure for table bookissues
+--
+-- alter table bookissues add column librarianid integer;
+-- alter table bookissues add constraint fk_librarian foreign key (librarianid) references librarians(librarianid);
+--
+
+--
+-- Dumping data for table librarians
+-- 
+
+--
+-- insert into librarians values(1,'John Smith','john.smith@example.com','9876543210'),(2,'Emma Brown','emma.brown@example.com','8765432109'),(3,'David Wilson','david.wilson@example.com','7654321098'),(4,'Franklin','franklin@example.com','3445236778');
+--
+
+--
+-- Dumping data for table bookissues
+-- 
+
+-- update bookissues set librarianid = 1 where bookid IN (1,2);
+-- update bookissues set librarianid = 1 where bookid IN (3,4);
+-- update bookissues set librarianid = 1 where bookid IN (5,6);
+
+
+
+--
+-- SQl Query Statements
+--
+
+--
+-- 05. List all book issues with student and librarian details (include attributes studend name, title, librarian name)
+--
+
+--
+-- select students.name as name,title as title,librarians.name as name from bookissues join students on bookissues.studentid = students.studentid join books on bookissues.bookid=books.bookid join librarians on bookissues.librarianid=librarians.librarianid;
+--
+
+--
+-- 06. Count the number of books issued by each librarian (include attributes librarianid, name, total_books_issued)
+--
+
+--
+-- select librarians.librarianid,librarians.name as name,count(bookissues.bookid) as bookid from librarians left join bookissues on librarians.librarianid = bookissues.librarianid group by librarians.librarianid,librarians.name;
+-- 
+
+--
+-- 07. Find librarians who have not issued any books (include attributes librarianid, name)
+--
+
+--
+-- select librarians.librarianid,librarians.name as name from librarians left join bookissues on librarians.librarianid = bookissues.librarianid where bookissues.bookid is NULL;
+--
